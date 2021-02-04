@@ -9,7 +9,7 @@ local bg0         = '#213039'
 local bg1         = '#242B48'
 local bg2         = '#343F4C'
 local dark0       = '#374D51'
-local dark1       = '#57606f'
+local dark1       = '#1e272e'
 local white       = '#dff9fb'
 local red         = '#ee5253'
 local darkred     = '#b33939'
@@ -30,135 +30,146 @@ local gary2       = '#747d8c'
 
 local highlight_group = {
   -- default
-  {group = 'Normal',              bg=bg0, fg=yellow},
+  {group = 'Normal',                 bg=bg0, fg=yellow},
+  -- Cursor
+  {group = 'Cursor',                 bg=white, fg=dark1},
+  {group = 'lCursor',                bg=white, fg=dark1},
   -- detail
-  {group = 'MatchParen',          bg=bg0, fg=white, style='underline'},
-  {group = 'CursorLine',          bg=bg2},
-  {group = 'VertSplit',           bg=dark0, fg=dark0},
-  {group = 'StatusLine',          bg=bg0, fg=darker_blue},
-  {group = 'StatusLineNC',        bg=bg0, fg=darker_blue},
+  {group = 'MatchParen',             bg=bg0, fg=white, style='underline'},
+  {group = 'CursorLine',             bg=bg2},
+  {group = 'VertSplit',              bg=dark0, fg=dark0},
+  {group = 'StatusLine',             bg=bg0, fg=bg0},
+  {group = 'StatusLineNC',           bg=bg0, fg=bg0},
   -- LineNumber
-  {group = 'LineNr',              fg=dark0},
+  {group = 'Line',                   fg=white},
+  {group = 'LineNr',                 fg=dark0},
   -- Folder
-  {group = 'Folded',              bg=bg2, fg=green, styple='bold'},
-  {group = 'FoldColumn',          bg=bg2, fg=green, styple='bold'},
+  {group = 'Folded',                 bg=bg2, fg=green, styple='bold'},
+  {group = 'FoldColumn',             bg=bg2, fg=green, styple='bold'},
   -- Sign
-  {group = 'SignColumn',          bg=bg0},
-  {group = 'EndOfBuffer',         fg=bg0},
+  {group = 'SignColumn',             bg=bg0},
+  {group = 'EndOfBuffer',            fg=bg0},
   -- Git
-  {group = 'GitAdd',              fg=darkgreen},
-  {group = 'GitDelete',           fg=darkred},
-  {group = 'GitChange',           fg=blue},
+  {group = 'GitAdd',                 fg=darkgreen},
+  {group = 'GitDelete',              fg=darkred},
+  {group = 'GitChange',              fg=blue},
   -- Lsp
-  {group = 'ErrorSign',              fg=bg0, bg=red},
+  {group = 'ErrorSign',              bg=bg0, fg=red},
   {group = 'ErrorVirtualText',       fg=red, bg=bg0},
   {group = 'ErrorFloating',          fg=red, bg=bg0},
   {group = 'ErrorUnderline',         fg=red, bg=bg0},
-  {group = 'WarningSign',            fg=bg0, bg=darkorange},
+  {group = 'WarningSign',            fg=darkorange, bg=bg0},
   {group = 'WarningVirtualText',     fg=darkorange, bg=bg0},
   {group = 'WarningFloating',        fg=darkorange, bg=bg0},
   {group = 'WarningUnderline',       fg=darkorange, bg=bg0},
-  {group = 'HintSign',               fg=bg0, bg=gary2},
+  {group = 'HintSign',               fg=gary2, bg=bg0},
   {group = 'HintVirtualText',        fg=gary2,bg=bg0},
   {group = 'HintFloating',           fg=gary2,bg=bg0},
   {group = 'HintUnderline',          fg=gary2,bg=bg0},
-  {group = 'InformationSign',        fg=bg0, bg=darkyellow},
+  {group = 'InformationSign',        fg=darkyellow, bg=bg0},
   {group = 'InformationVirtualText', fg=darkyellow, bg=bg0},
   {group = 'InformationFloating',    fg=darkyellow, bg=bg0},
   {group = 'InformationUnderline',   fg=darkyellow, bg=bg0},
   -- syntax
   -- Contant
-  {group = 'Character',           fg=purple},
-  {group = 'Number',              fg=orange},
-  {group = 'String',              fg=green},
-  {group = 'Booleans',            fg=purple},
-  {group = 'Float',               fg=lightblue},
+  {group = 'Character',              fg=purple},
+  {group = 'Number',                 fg=orange},
+  {group = 'String',                 fg=green},
+  {group = 'Booleans',               fg=purple},
+  {group = 'Float',                  fg=lightblue},
   -- Indentifier
-  {group = 'Function',            fg=orange, style="bold"},
+  {group = 'Function',               fg=orange, style="bold"},
   -- Statement
-  {group = 'Conditinal',          fg=orange},
-  {group = 'Repeat',              fg=orange, cfg=167},
-  {group = 'Label',               fg=orange},
-  {group = 'Operator',            fg=lightblue, ctermfg=1},
-  {group = 'Keyword',             fg=orange},
-  {group = 'Exception',           fg=orange},
+  {group = 'Conditinal',             fg=orange},
+  {group = 'Repeat',                 fg=orange, cfg=167},
+  {group = 'Label',                  fg=orange},
+  {group = 'Operator',               fg=lightblue, ctermfg=1},
+  {group = 'Keyword',                fg=orange},
+  {group = 'Exception',              fg=orange},
   -- PreProc
-  {group = 'Include',             fg=lightblue},
-  {group = 'Defind',              fg=lightblue},
-  {group = 'Marco',               fg=lightblue},
-  {group = 'PreCondit',           fg=lightblue},
+  {group = 'Include',                fg=lightblue},
+  {group = 'Defind',                 fg=lightblue},
+  {group = 'Marco',                  fg=lightblue},
+  {group = 'PreCondit',              fg=lightblue},
   -- Type
-  {group = 'StorageClass',        fg=lightblue},
-  {group = 'Structure',           fg=lightblue},
-  {group = 'Typedef',             fg=lightblue},
+  {group = 'StorageClass',           fg=lightblue},
+  {group = 'Structure',              fg=lightblue},
+  {group = 'Typedef',                fg=lightblue},
   -- Special
-  {group = 'SpecialChar',         fg=lightblue},
-  {group = 'Tag',                 fg=lightblue},
-  {group = 'Delimiter',           fg=lightblue},
-  {group = 'SpecialComment',      fg=lightblue},
-  {group = 'Debug',               fg=lightblue},
+  {group = 'SpecialChar',            fg=lightblue},
+  {group = 'Tag',                    fg=lightblue},
+  {group = 'Delimiter',              fg=lightblue},
+  {group = 'SpecialComment',         fg=lightblue},
+  {group = 'Debug',                  fg=lightblue},
   -- nvim-tree
-  {group = 'NvimTreeFolderName',  fg=yellow},
-  {group = 'NvimTreeRootFolder',  fg=yellow},
-  {group = 'NvimTreeSpecialFile', fg=yellow},
-  -- nvim-bufferline
+  {group = 'NvimTreeFolderName',     fg=yellow},
+  {group = 'NvimTreeRootFolder',     fg=yellow},
+  {group = 'NvimTreeSpecialFile',    fg=yellow},
   -- dashboard
-  {group = 'dashboardHeader',     fg=yellow},
-  {group = 'dashboardFooter',     fg=darkorange},
-  {group = 'dashboardCenter',     fg=darkgreen},
-  {group = 'dashboardShortCut',   fg=darkorange},
+  {group = 'dashboardHeader',        fg=yellow},
+  {group = 'dashboardFooter',        fg=darkorange},
+  {group = 'dashboardCenter',        fg=darkgreen},
+  {group = 'dashboardShortCut',      fg=darkorange},
   -- Pmenu
-  {group = 'Pmenu',               bg=bg2},
-  {group = 'PmenuSel',            bg=bg1, style='bold'},
-  {group = 'PmenuSBar',           bg=bg2, fg=bg2},
-  {group = 'PmenuThumb',          bg=gary1},
+  {group = 'Pmenu',                  bg=bg2},
+  {group = 'PmenuSel',               bg=bg1, style='bold'},
+  {group = 'PmenuSBar',              bg=bg2, fg=bg2},
+  {group = 'PmenuThumb',             bg=gary1},
   -- Search
-  {group = 'Search',              fg=purple,bg=darkgreen},
-  {group = 'MatchParen',          fg=white, bg=darkgreen},
+  {group = 'Search',                 fg=purple,bg=darkgreen},
+  {group = 'MatchParen',             fg=white, bg=darkgreen},
   -- Visual
-  {group = 'Visual',              style='inverse'},
-  {group = 'VisualNOS',           bg=gary1,},
+  {group = 'Visual',                 style='inverse'},
+  {group = 'VisualNOS',              bg=gary1,},
   -- More
-  {group='More', fg=lightblue},
-  {group='MoreMsg', fg=lightblue},
+  {group='More',                     fg=lightblue},
+  {group='MoreMsg',                  fg=lightblue},
   -- Mode
-  {group='ModeMsg', fg=lightblue},
-  {group='Statements', fg="#40ffff"}
+  {group='ModeMsg',                  fg=lightblue},
+  {group='Statements',               fg="#40ffff"},
+  -- nvim-bufferline
+  {group='BufferLineFill',           bg=bg0, fg=white},
 }
 local link_group = {
+  -- Diff
+  {'DiffAdd',                                         'GitAdd'},
+  {'DiffChange',                                      'GitChange'},
+  {'DiffDelete',                                      'GitDelete'},
   -- barbar.nvim
-  {'BufferTabpageFill',                    'Normal'},
-  {'BufferTabpages',                       'Normal'},
+  {'BufferTabpageFill',                               'Normal'},
+  {'BufferTabpages',                                  'Normal'},
   -- lspconfig
-  {'LspDiagnosticsSignError',                   'ErrorSign'},
-  {'LspDiagnosticsVirtualTextInformationError', 'ErrorVirtualText'},
-  {'LspDiagnosticsFloatingError',               'ErrorFloating'},
-  {'LspDiagnosticsUnderlineError',              'ErrorUnderline'},
-  {'LspDiagnosticsSignWarning',                   'WarningSign'},
-  {'LspDiagnosticsVirtualTextInformationWarning', 'WarningVirtualText'},
-  {'LspDiagnosticsFloatingWarning',               'WarningFloating'},
-  {'LspDiagnosticsUnderlineWarning',              'WarningUnderline'},
-  {'LspDiagnosticsSignHint',                   'HintSign'},
-  {'LspDiagnosticsVirtualTextInformationHint', 'HintVirtualText'},
-  {'LspDiagnosticsFloatingHint',               'HintFloating'},
-  {'LspDiagnosticsUnderlineHint',              'HintUnderline'},
+  {'LspDiagnosticsSignError',                         'ErrorSign'},
+  {'LspDiagnosticsVirtualTextInformationError',       'ErrorVirtualText'},
+  {'LspDiagnosticsFloatingError',                     'ErrorFloating'},
+  {'LspDiagnosticsUnderlineError',                    'ErrorUnderline'},
+  {'LspDiagnosticsSignWarning',                       'WarningSign'},
+  {'LspDiagnosticsVirtualTextInformationWarning',     'WarningVirtualText'},
+  {'LspDiagnosticsFloatingWarning',                   'WarningFloating'},
+  {'LspDiagnosticsUnderlineWarning',                  'WarningUnderline'},
+  {'LspDiagnosticsSignHint',                          'HintSign'},
+  {'LspDiagnosticsVirtualTextInformationHint',        'HintVirtualText'},
+  {'LspDiagnosticsFloatingHint',                      'HintFloating'},
+  {'LspDiagnosticsUnderlineHint',                     'HintUnderline'},
   {'LspDiagnosticsSignInformation',                   'InformationSign'},
   {'LspDiagnosticsVirtualTextInformationInformation', 'InformationVirtualText'},
   {'LspDiagnosticsFloatingInformation',               'InformationFloating'},
   {'LspDiagnosticsUnderlineInformation',              'InformationUnderline'},
   -- gitgutter
-  {'GitGutterAdd',                         'GitAdd'},
-  {'GitGutterChange',                      'GitChange'},
-  {'GitGutterDelete',                      'GitDelete'},
+  {'GitGutterAdd',                                    'GitAdd'},
+  {'GitGutterChange',                                 'GitChange'},
+  {'GitGutterDelete',                                 'GitDelete'},
+  -- coc-git
+  {'CocGitSign',                                      'GitAdd'},
+  {'CocGitChangedSign',                               'GitChange'},
+  {'CocGitChangeRemoveSign',                          'GitChange'},
+  {'CocGitRemoveSign',                                'GitDelete'},
+  {'CocGitTopRemoveSign',                             'GitDelete'},
   -- nvim-treesitter
-  {'TSConstBuiltin','Constant'},
-  {'TSConstructor  ','Typedef'},
-  {'TSFuncBuiltin  ', 'Function'},
-  {'TSStringEscape ', 'Character'},
-  {'TSStringRegex  ', 'SpecialChar'},
-  {'TSURI', 'Tag'},
-  {'TSVariableBuiltin','Identifier'},
-
+  {'TSCharacter',                                     'Character'},
+  {'TSNumber',                                        'Number'},
+  {'TSString',                                        'String'},
+  {'TSFloat',                                         'Float'},
 }
 local value_group = {
   {'gitgutter_sign_added', '▊'},
@@ -203,3 +214,26 @@ end
 Set_g_value(value_group)
 Set_Color(highlight_group)
 Link_group(link_group)
+
+-- Setting Lsp sign text
+vim.fn['sign_define']('LspDiagnosticsSignError',{
+  text=' ▊',
+  texthl='LspDiagnosticsSignError',
+  numhl='LspDiagnosticsSignError',
+})
+vim.fn['sign_define']('LspDiagnosticsSignWarning', {
+  text=' ▊',
+  texthl='LspDiagnosticsSignWarning',
+  numhl='LspDiagnosticsSignWarning',
+})
+vim.fn['sign_define']('LspDiagnosticsSignHint', {
+  text=' ▊',
+  texthl='LspDiagnosticsSignHint',
+  numhl='LspDiagnosticsSignHint',
+})
+vim.fn['sign_define']('LspDiagnosticsSignInformation', {
+  text=' ▊',
+  texthl='LspDiagnosticsSignInformation',
+  numhl='LspDiagnosticsSignInformation',
+})
+
