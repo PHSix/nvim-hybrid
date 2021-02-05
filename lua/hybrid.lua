@@ -1,5 +1,8 @@
 local vim = vim
 local api = vim.api
+local fillchars = 'vert:|'
+vim.o.fillchars = fillchars
+vim.wo.fillchars = fillchars
 vim.g.colors_name = 'nvim-hybrid'
 vim.cmd('highlight clear')
 if vim.fn.exists('syntax_on') then vim.cmd('syntax reset') end
@@ -19,7 +22,6 @@ local purple      = '#D4BFFF'
 local lightblue   = '#34ace0'
 local blue        = '#227093'
 local darkblue    = '#3B3B98'
-local darker_blue = '#2c2c54'
 local orange      = '#FEA47F'
 local darkorange  = '#F97F51'
 local lightyellow = '#f9ca24'
@@ -32,17 +34,21 @@ local highlight_group = {
   -- default
   {group = 'Normal',                 bg=bg0, fg=yellow},
   -- Cursor
-  {group = 'Cursor',                 bg=white, fg=dark1},
-  {group = 'lCursor',                bg=white, fg=dark1},
+  {group = 'Cursor',                 bg=white, fg=darkblue},
+  {group = 'lCursor',                bg=white, fg=darkblue},
   -- detail
   {group = 'MatchParen',             bg=bg0, fg=white, style='underline'},
   {group = 'CursorLine',             bg=bg2},
-  {group = 'VertSplit',              bg=dark0, fg=dark0},
+  {group = 'VertSplit',              bg=lightyellow, fg=bg0},
   {group = 'StatusLine',             bg=bg0, fg=bg0},
   {group = 'StatusLineNC',           bg=bg0, fg=bg0},
   -- LineNumber
   {group = 'Line',                   fg=white},
   {group = 'LineNr',                 fg=dark0},
+  -- TabLine
+  {group='TabLine',                  bg=bg1, fg=gary2, style='reverse'},
+  {group='TabLineFill',              bg=gary2, fg=bg0},
+  {group='TabLineSel',               bg=dark1, fg=white, style='bold'},
   -- Folder
   {group = 'Folded',                 bg=bg2, fg=green, styple='bold'},
   {group = 'FoldColumn',             bg=bg2, fg=green, styple='bold'},
@@ -129,6 +135,8 @@ local highlight_group = {
   {group='Statements',               fg="#40ffff"},
   -- nvim-bufferline
   {group='BufferLineFill',           bg=bg0, fg=white},
+  -- lspsaga
+  {group='LspSaga',                  bg=dark0, fg=yellow},
 }
 local link_group = {
   -- Diff
@@ -170,6 +178,19 @@ local link_group = {
   {'TSNumber',                                        'Number'},
   {'TSString',                                        'String'},
   {'TSFloat',                                         'Float'},
+  -- LspSaga
+  {'LspSagaAutoPreview',                     'LspSaga'},
+  {'LspSagaBorderTitle',                     'LspSaga'},
+  {'LspSagaCodeActionBorder',                'LspSaga'},
+  {'LspSagaCodeActionContent',               'LspSaga'},
+  {'LspSagaCodeActionTitle',                 'LspSaga'},
+  {'LspSagaCodeActionTitleDefPreviewBorder', 'LspSaga'},
+  {'LspSagaCodeActionTrucateLine',           'LspSaga'},
+  {'LspSagaContent',                         'LspSaga'},
+  {'LspSagaFinderSelection',                 'LspSaga'},
+  {'LspSagaRenameBorder',                    'LspSaga'},
+  {'LspSagaRenamePromptPrefix',              'LspSaga'},
+  {'LspSagaLspFinderBorder',                 'LspSaga'},
 }
 local value_group = {
   {'gitgutter_sign_added', '▊'},
