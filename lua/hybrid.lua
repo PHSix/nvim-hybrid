@@ -1,8 +1,5 @@
 local vim = vim
 local api = vim.api
-local fillchars = 'vert:|'
-vim.o.fillchars = fillchars
-vim.wo.fillchars = fillchars
 vim.g.colors_name = 'nvim-hybrid'
 vim.cmd('highlight clear')
 if vim.fn.exists('syntax_on') then vim.cmd('syntax reset') end
@@ -43,11 +40,11 @@ local highlight_group = {
   {group = 'StatusLine',             bg=bg0, fg=bg0},
   {group = 'StatusLineNC',           bg=bg0, fg=bg0},
   -- LineNumber
-  {group = 'Line',                   fg=white},
   {group = 'LineNr',                 fg=dark0},
+  {group = 'CursorLineNr',           fg=purple},
   -- TabLine
   {group='TabLine',                  bg=bg1, fg=gary2, style='reverse'},
-  {group='TabLineFill',              bg=gary2, fg=bg0},
+  {group='TabLineFill',              fg=bg1},
   {group='TabLineSel',               bg=dark1, fg=white, style='bold'},
   -- Folder
   {group = 'Folded',                 bg=bg2, fg=green, styple='bold'},
@@ -136,7 +133,7 @@ local highlight_group = {
   -- nvim-bufferline
   {group='BufferLineFill',           bg=bg0, fg=white},
   -- lspsaga
-  {group='LspSaga',                  bg=dark0, fg=yellow},
+  -- {group='LspSaga',                  bg=dark0, fg=yellow},
 }
 local link_group = {
   -- Diff
@@ -178,19 +175,24 @@ local link_group = {
   {'TSNumber',                                        'Number'},
   {'TSString',                                        'String'},
   {'TSFloat',                                         'Float'},
+  -- coc.nvim
+  {'CocErrorSign', 'ErrorSign'},
+  {'CocWarningSign', 'WarningSign'},
+  {'CocInformationSign', 'InformationSign'},
+  {'CocHintSign', 'HintSign'},
   -- LspSaga
-  {'LspSagaAutoPreview',                     'LspSaga'},
-  {'LspSagaBorderTitle',                     'LspSaga'},
-  {'LspSagaCodeActionBorder',                'LspSaga'},
-  {'LspSagaCodeActionContent',               'LspSaga'},
-  {'LspSagaCodeActionTitle',                 'LspSaga'},
-  {'LspSagaCodeActionTitleDefPreviewBorder', 'LspSaga'},
-  {'LspSagaCodeActionTrucateLine',           'LspSaga'},
-  {'LspSagaContent',                         'LspSaga'},
-  {'LspSagaFinderSelection',                 'LspSaga'},
-  {'LspSagaRenameBorder',                    'LspSaga'},
-  {'LspSagaRenamePromptPrefix',              'LspSaga'},
-  {'LspSagaLspFinderBorder',                 'LspSaga'},
+  -- {'LspSagaAutoPreview',                     'LspSaga'},
+  -- {'LspSagaBorderTitle',                     'LspSaga'},
+  -- {'LspSagaCodeActionBorder',                'LspSaga'},
+  -- {'LspSagaCodeActionContent',               'LspSaga'},
+  -- {'LspSagaCodeActionTitle',                 'LspSaga'},
+  -- {'LspSagaCodeActionTitleDefPreviewBorder', 'LspSaga'},
+  -- {'LspSagaCodeActionTrucateLine',           'LspSaga'},
+  -- {'LspSagaContent',                         'LspSaga'},
+  -- {'LspSagaFinderSelection',                 'LspSaga'},
+  -- {'LspSagaRenameBorder',                    'LspSaga'},
+  -- {'LspSagaRenamePromptPrefix',              'LspSaga'},
+  -- {'LspSagaLspFinderBorder',                 'LspSaga'},
 }
 local value_group = {
   {'gitgutter_sign_added', '▊'},
