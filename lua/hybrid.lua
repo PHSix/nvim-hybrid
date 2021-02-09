@@ -10,6 +10,7 @@ local bg1         = '#242B48'
 local bg2         = '#343F4C'
 local dark0       = '#374D51'
 local dark1       = '#1e272e'
+local dark2       = '#34495e'
 local white       = '#dff9fb'
 local red         = '#ee5253'
 local darkred     = '#b33939'
@@ -43,9 +44,11 @@ local highlight_group = {
   {group = 'LineNr',                 fg=dark0},
   {group = 'CursorLineNr',           fg=purple},
   -- TabLine
-  {group='TabLine',                  bg=bg1, fg=gary2, style='reverse'},
-  {group='TabLineFill',              fg=bg1},
-  {group='TabLineSel',               bg=dark1, fg=white, style='bold'},
+  {group='TabLine',               bg=dark1, fg=white, style='bold'},
+  {group='TabLineSel',                  bg=gary2, fg=bg1, style='bold'},
+  {group='TabLineFill',              fg=bg0},
+  {group='SepTabLine',               bg=gary2, fg=bg1},
+  {group='SepTabLineSel',            bg=gary2, fg=dark1},
   -- Folder
   {group = 'Folded',                 bg=bg2, fg=green, styple='bold'},
   {group = 'FoldColumn',             bg=bg2, fg=green, styple='bold'},
@@ -135,6 +138,8 @@ local highlight_group = {
   -- lspsaga
   -- {group='LspSaga',                  bg=dark0, fg=yellow},
 }
+
+
 local link_group = {
   -- Diff
   {'DiffAdd',                                         'GitAdd'},
@@ -204,7 +209,10 @@ local value_group = {
   {'gitgutter_map_keys', 0}
 }
 
-local Set_Color =  function(group)
+
+
+
+local co = coroutine.wrap(function(group)
   for _, value in pairs(group) do
     if value['bg'] == nil then
       value['bg'] = 'NONE'
@@ -223,40 +231,44 @@ local Set_Color =  function(group)
     end
   end
 end
-local Link_group = function(group)
+
+)
+
+local co1 = coroutine.wrap(
+function (group)
   for _, value in pairs(group) do
     vim.cmd('hi! link ' .. value[1] .. " " .. value[2])
   end
 end
-
-local Set_g_value = function (group)
+)
+local co2 = coroutine.wrap(
+function (group)
   for _, v in pairs(group) do
     vim.g[v[1]] = v[2]
   end
+  vim.fn['sign_define']('LspDiagnosticsSignError',{
+    text=' ▊',
+    texthl='LspDiagnosticsSignError',
+    numhl='LspDiagnosticsSignError',
+  })
+  vim.fn['sign_define']('LspDiagnosticsSignWarning', {
+    text=' ▊',
+    texthl='LspDiagnosticsSignWarning',
+    numhl='LspDiagnosticsSignWarning',
+  })
+  vim.fn['sign_define']('LspDiagnosticsSignHint', {
+    text=' ▊',
+    texthl='LspDiagnosticsSignHint',
+    numhl='LspDiagnosticsSignHint',
+  })
+  vim.fn['sign_define']('LspDiagnosticsSignInformation', {
+    text=' ▊',
+    texthl='LspDiagnosticsSignInformation',
+    numhl='LspDiagnosticsSignInformation',
+  })
 end
-Set_g_value(value_group)
-Set_Color(highlight_group)
-Link_group(link_group)
+)
 
--- Setting Lsp sign text
-vim.fn['sign_define']('LspDiagnosticsSignError',{
-  text=' ▊',
-  texthl='LspDiagnosticsSignError',
-  numhl='LspDiagnosticsSignError',
-})
-vim.fn['sign_define']('LspDiagnosticsSignWarning', {
-  text=' ▊',
-  texthl='LspDiagnosticsSignWarning',
-  numhl='LspDiagnosticsSignWarning',
-})
-vim.fn['sign_define']('LspDiagnosticsSignHint', {
-  text=' ▊',
-  texthl='LspDiagnosticsSignHint',
-  numhl='LspDiagnosticsSignHint',
-})
-vim.fn['sign_define']('LspDiagnosticsSignInformation', {
-  text=' ▊',
-  texthl='LspDiagnosticsSignInformation',
-  numhl='LspDiagnosticsSignInformation',
-})
-
+co(highlight_group)
+co1(link_group)
+co2(value_group)
