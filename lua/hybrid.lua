@@ -1,5 +1,6 @@
 local vim = vim
 local api = vim.api
+local a = require("async")
 vim.g.colors_name = 'nvim-hybrid'
 vim.cmd('highlight clear')
 if vim.fn.exists('syntax_on') then vim.cmd('syntax reset') end
@@ -77,6 +78,7 @@ local highlight_group = {
   {group = 'InformationFloating',    fg=darkyellow, bg=bg0},
   {group = 'InformationUnderline',   fg=darkyellow, bg=bg0},
   -- syntax
+  {group = 'Title',                  fg=lightyellow},
   -- Contant
   {group = 'Character',              fg=purple},
   {group = 'Number',                 fg=orange},
@@ -133,10 +135,9 @@ local highlight_group = {
   -- Mode
   {group='ModeMsg',                  fg=lightblue},
   {group='Statements',               fg="#40ffff"},
-  -- nvim-bufferline
-  {group='BufferLineFill',           bg=bg0, fg=white},
-  -- lspsaga
-  -- {group='LspSaga',                  bg=dark0, fg=yellow},
+  -- barbar.nvim
+  {group='BufferCurrent',           bg=bg0, fg=white},
+  {group='BufferInactive',          bg=bg0, fg=yellow},
 }
 
 
@@ -146,6 +147,20 @@ local link_group = {
   {'DiffChange',                                      'GitChange'},
   {'DiffDelete',                                      'GitDelete'},
   -- barbar.nvim
+  {'BufferCurrentIndex',                              'BufferCurrent'},
+  {'BufferCurrentMod', 'BufferCurrent'},
+  {'BufferCurrentSign', 'BufferCurrent'},
+  {'BufferCurrentTarget', 'BufferCurrent'},
+  {'BufferVisible', 'BufferInactive'},
+  {'BufferVisibleIndex', 'BufferInactive'},
+  {'BufferVisibleMod', 'BufferInactive'},
+  {'BufferVisibleSign', 'BufferInactive'},
+  {'BufferVisibleTarget', 'BufferInactive'},
+  {'BufferInactive', 'BufferInactive'},
+  {'BufferInactiveMod', 'BufferInactive'},
+  {'BufferInactiveSign', 'BufferInactive'},
+  {'BufferInactiveIndex', 'BufferInactive'},
+  {'BufferInactiveTarget', 'BufferInactive'},
   {'BufferTabpageFill',                               'Normal'},
   {'BufferTabpages',                                  'Normal'},
   -- lspconfig
@@ -185,19 +200,6 @@ local link_group = {
   {'CocWarningSign', 'WarningSign'},
   {'CocInformationSign', 'InformationSign'},
   {'CocHintSign', 'HintSign'},
-  -- LspSaga
-  -- {'LspSagaAutoPreview',                     'LspSaga'},
-  -- {'LspSagaBorderTitle',                     'LspSaga'},
-  -- {'LspSagaCodeActionBorder',                'LspSaga'},
-  -- {'LspSagaCodeActionContent',               'LspSaga'},
-  -- {'LspSagaCodeActionTitle',                 'LspSaga'},
-  -- {'LspSagaCodeActionTitleDefPreviewBorder', 'LspSaga'},
-  -- {'LspSagaCodeActionTrucateLine',           'LspSaga'},
-  -- {'LspSagaContent',                         'LspSaga'},
-  -- {'LspSagaFinderSelection',                 'LspSaga'},
-  -- {'LspSagaRenameBorder',                    'LspSaga'},
-  -- {'LspSagaRenamePromptPrefix',              'LspSaga'},
-  -- {'LspSagaLspFinderBorder',                 'LspSaga'},
 }
 local value_group = {
   {'gitgutter_sign_added', '▊'},
@@ -265,6 +267,26 @@ function (group)
     text=' ▊',
     texthl='LspDiagnosticsSignInformation',
     numhl='LspDiagnosticsSignInformation',
+  })
+  vim.fn['sign_define']('GitSignsAdd', {
+    text='▊',
+    texthl='GitAdd',
+  })
+  vim.fn['sign_define']('GitSignsChange', {
+    text='▊',
+    texthl='GitChange',
+  })
+  vim.fn['sign_define']('GitSignsDelete', {
+    text='▊',
+    texthl='GitDelete',
+  })
+  vim.fn['sign_define']('GitSignsTopDelete', {
+    text='▊',
+    texthl='GitDelete',
+  })
+  vim.fn['sign_define']('GitSignsChangeDelete', {
+    text='▊',
+    texthl='GitDelete',
   })
 end
 )
