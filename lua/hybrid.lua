@@ -1,6 +1,6 @@
 local vim = vim
 local api = vim.api
-local a = require("async")
+-- local a = require("async")
 vim.g.colors_name = 'nvim-hybrid'
 vim.cmd('highlight clear')
 if vim.fn.exists('syntax_on') then vim.cmd('syntax reset') end
@@ -138,6 +138,8 @@ local highlight_group = {
   -- barbar.nvim
   {group='BufferCurrent',           bg=bg0, fg=white},
   {group='BufferInactive',          bg=bg0, fg=yellow},
+  -- lspsaga
+  {group='TargetWord',               bg=bg0, fg=purple}
 }
 
 
@@ -200,6 +202,8 @@ local link_group = {
   {'CocWarningSign', 'WarningSign'},
   {'CocInformationSign', 'InformationSign'},
   {'CocHintSign', 'HintSign'},
+  -- vim-translator
+  {'TranslatorBorder',           'Normal'}
 }
 local value_group = {
   {'gitgutter_sign_added', '▊'},
