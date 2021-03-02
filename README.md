@@ -10,9 +10,9 @@ neovim(version >= 0.5)
 Use [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) to install.
 ```lua
 use{
-  'PHSix/nvim-hybird',
+  'PHSix/nvim-hybrid',
   config = function()
-    require('hybird').config()
+    require('hybrid').config()
   end
 }
 ```
