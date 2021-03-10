@@ -219,9 +219,9 @@ hybird['li'] = {
 
 hybird["sign"] = {
   {"LspDiagnosticsSignError",       text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+  {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+  {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+  {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
   {"GitSignsAdd",                   text = "▊", hl = "GitAdd"},
   {"GitSignsChange",                text = "▊", hl = "GitChange"},
   {"GitSignsDelete",                text = "▊", hl = "GitDelete"},
