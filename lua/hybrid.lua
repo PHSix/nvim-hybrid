@@ -1,8 +1,8 @@
 local fn = vim.fn
 local hybird = {}
-
 local none = "NONE"
 local bold = "bold"
+local italic = "italic"
 local underline = "underline"
 local bg0 = "#213039"
 local bg1 = "#242B48"
@@ -11,7 +11,7 @@ local dark0 = "#374D51"
 local dark1 = "#1e272e"
 local dark2 = "#34495e"
 local white = "#d2dae2"
-local lightred = '#ff7979'
+local lightred = "#ff7979"
 local red = "#ee5253"
 local darkred = "#b33939"
 local lightgreen = "#BBE67E"
@@ -32,6 +32,17 @@ local darkyellow = "#ffb142"
 local darkgray = "#84817a"
 local gray = "#747d8c"
 local pink = "#f78fb3"
+local combine = function(...)
+  local M = {...}
+  local style = ""
+  for k, s in pairs(M) do
+    if k ~= #M and k ~= 1 then
+      style = style .. ","
+    end
+    style = style .. s
+  end
+  return style
+end
 
 hybird["hi"] = {
   -- default
@@ -62,7 +73,7 @@ hybird["hi"] = {
   {"EndOfBuffer", fg = bg0},
   -- Git
   {"GitAdd", fg = darkgreen},
-  {"GitDelete", fg = darkred},
+  {"GitDelete", fg = lightred},
   {"GitChange", fg = blue},
   -- Lsp
   {"ErrorSign", bg = bg0, fg = red},
@@ -81,23 +92,20 @@ hybird["hi"] = {
   {"InformationVirtualText", fg = darkyellow, bg = bg0},
   {"InformationFloating", fg = darkyellow, bg = bg0},
   {"InformationUnderline", fg = darkyellow, bg = bg0},
-
-
   {"Title", fg = lightyellow},
-
   -- Indentifier
   {"Identifier", fg = white}, -- filed
-  {"Keyword",      fg = purple}, -- local
-  {"Type", fg = lightblue, style = none}, -- char, int
+  {"Keyword", fg = purple, style = italic}, -- local
+  {"Type", fg = lightblue, style = italic}, -- char, int
   {"Character", fg = darkcyan}, -- char
-  {"String", fg = green},  -- string
+  {"String", fg = green}, -- string
   {"Number", fg = orange}, -- number,int
   {"Boolean", fg = purple}, -- boolean
   {"Float", fg = lightblue}, -- float,double
   {"Function", fg = yellow, style = bold}, -- func
   {"PreProc", fg = purple},
-  {"Statement", fg = pink}, -- conditional operator
-  {"Comment", fg = gray},
+  {"Statement", fg = pink, style = italic}, -- conditional operator
+  {"Comment", fg = gray, style = combine(italic)},
   -- Special
   -- {"SpecialChar", fg = lightblue},
   -- {"Tag", fg = lightblue},
@@ -144,13 +152,17 @@ hybird["hi"] = {
   -- Telescope
   {"TelescopeSelection", bg = dark2, fg = white},
   -- neogit
-  {'NeogitDiffAddHighlight', bg=bg0, fg=lightgreen},
-  {'NeogitDiffDelete', bg=bg0, fg=lightred},
-  {'NeogitDiffDeleteHighlight', bg=dark1, fg=lightred},
-  {'NeogitDiffContextHighlight', bg=bg0, fg=yellow},
+  {"NeogitDiffAddHighlight", bg = bg0, fg = lightgreen},
+  {"NeogitDiffDelete", bg = bg0, fg = lightred},
+  {"NeogitDiffDeleteHighlight", bg = dark1, fg = lightred},
+  {"NeogitDiffContextHighlight", bg = bg0, fg = yellow},
+  -- easymotion
+  {"EasyMotionTarget", fg = purple},
+  -- hop.nvim
+  {"HopNextKey", fg = purple, style = combine(bold, underline)}
 }
 
-hybird['li'] = {
+hybird["li"] = {
   -- Diff
   {"DiffAdd", "GitAdd"},
   {"DiffChange", "GitChange"},
@@ -218,68 +230,81 @@ hybird['li'] = {
 }
 
 hybird["sign"] = {
-  {"LspDiagnosticsSignError",       text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
-  {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
-  {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
-  {"GitSignsAdd",                   text = "▊", hl = "GitAdd"},
-  {"GitSignsChange",                text = "▊", hl = "GitChange"},
-  {"GitSignsDelete",                text = "▊", hl = "GitDelete"},
-  {"GitSignsTopDelete",             text = "▊", hl = "GitDelete"},
-  {"GitSignsChangeDelete",          text = "▊", hl = "GitDelete"}
+  -- {"LspDiagnosticsSignError",       text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+  -- {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+  -- {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+  -- {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
+  {"LspDiagnosticsSignError", text = " |", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+  {"LspDiagnosticsSignWarning", text = " |", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+  {"LspDiagnosticsSignHint", text = " |", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+  {
+    "LspDiagnosticsSignInformation",
+    text = " |",
+    hl = "LspDiagnosticsSignInformation",
+    nhl = "LspDiagnosticsSignInformation"
+  },
+  {"GitSignsAdd", text = "▊", hl = "GitAdd"},
+  {"GitSignsChange", text = "▊", hl = "GitChange"},
+  {"GitSignsDelete", text = "▊", hl = "GitDelete"},
+  {"GitSignsTopDelete", text = "▊", hl = "GitDelete"},
+  {"GitSignsChangeDelete", text = "▊", hl = "GitDelete"}
 }
 
-
 function hybird:load_hi_group()
-  for _, v in ipairs(self['hi']) do
+  for _, v in ipairs(self["hi"]) do
     local command = "hi! " .. v[1] .. " "
-    if v['bg'] ~= nil then
-      command = command .. "guibg=" .. v['bg'] .. " "
+    if v["bg"] ~= nil then
+      command = command .. "guibg=" .. v["bg"] .. " "
     end
-    if v['fg'] ~= nil then
-      command = command .. "guifg=" .. v['fg'] .. " "
+    if v["fg"] ~= nil then
+      command = command .. "guifg=" .. v["fg"] .. " "
     end
-    if v['style'] ~= nil then
-      command = command .. "gui=" .. v['style'] .. " "
+    if v["style"] ~= nil then
+      command = command .. "gui=" .. v["style"] .. " "
     end
     vim.cmd(command)
   end
 end
 
 function hybird:load_li_group()
-  for _, v in ipairs(self['li']) do
-    local command = 'hi! link ' .. v[1] .. " ".. v[2]
+  for _, v in ipairs(self["li"]) do
+    local command = "hi! link " .. v[1] .. " " .. v[2]
     vim.cmd(command)
   end
 end
 
 function hybird:load_sign_group()
-  for _, v in ipairs(self['sign']) do
+  for _, v in ipairs(self["sign"]) do
     local t = {}
-    if v['text']~= nil then
-      t['text'] = v['text']
+    if v["text"] ~= nil then
+      t["text"] = v["text"]
     end
-    if v['hl']~= nil then
-      t['texthl'] = v['hl']
+    if v["hl"] ~= nil then
+      t["texthl"] = v["hl"]
     end
-    if v['nhl']~= nil then
-      t['numhl'] = v['nhl']
+    if v["nhl"] ~= nil then
+      t["numhl"] = v["nhl"]
     end
-    fn['sign_define'](v[1], t)
+    fn["sign_define"](v[1], t)
   end
 end
 local async
 
-async = vim.loop.new_async(vim.schedule_wrap(function ()
-  hybird:load_hi_group()
-  hybird:load_li_group()
-  hybird:load_sign_group()
-  async:close()
-end))
+async =
+  vim.loop.new_async(
+  vim.schedule_wrap(
+    function()
+      hybird:load_hi_group()
+      hybird:load_li_group()
+      hybird:load_sign_group()
+      async:close()
+    end
+  )
+)
 
 function hybird.config()
   vim.cmd("highlight clear")
-  vim.o.background = 'dark'
+  vim.o.background = "dark"
   vim.o.termguicolors = true
   if fn.exists("syntax_on") then
     vim.cmd("syntax reset")
