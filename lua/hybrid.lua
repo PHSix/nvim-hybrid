@@ -151,6 +151,7 @@ hybird["hi"] = {
   {"FlutterToolsOutlinebottom", bg = bg0, fg = lightgreen},
   -- Telescope
   {"TelescopeSelection", bg = dark2, fg = white},
+  {"TelescopePreviewHyphen", bg = bg0, fg = white},
   -- neogit
   {"NeogitDiffAddHighlight", bg = bg0, fg = lightgreen},
   {"NeogitDiffDelete", bg = bg0, fg = lightred},
@@ -317,5 +318,7 @@ function hybird.config()
   vim.g.gitgutter_sign_removed_above_and_below = "▊"
   async:send()
 end
+
+hybird.config()
 
 return hybird

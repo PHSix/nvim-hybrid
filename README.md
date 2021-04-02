@@ -12,7 +12,7 @@ Use [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) to insta
 use{
   'PHSix/nvim-hybrid',
   config = function()
-    require('hybrid').config()
+    require('hybrid')
   end
 }
 ```
