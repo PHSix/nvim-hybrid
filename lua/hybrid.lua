@@ -51,6 +51,7 @@ hybird["hi"] = {
   {"Cursor", bg = white, fg = darkblue},
   {"lCursor", bg = white, fg = darkblue},
   -- detail
+  {"NonText", fg=lightblue},
   {"MatchParen", bg = bg0, fg = white, style = "underline"},
   {"CursorLine", bg = bg2},
   {"VertSplit", bg = lightyellow, fg = bg0},
@@ -152,6 +153,7 @@ hybird["hi"] = {
   -- Telescope
   {"TelescopeSelection", bg = dark2, fg = white},
   {"TelescopePreviewHyphen", bg = bg0, fg = white},
+  -- {"TelescopeResult"},
   -- neogit
   {"NeogitDiffAddHighlight", bg = bg0, fg = lightgreen},
   {"NeogitDiffDelete", bg = bg0, fg = lightred},
@@ -160,7 +162,9 @@ hybird["hi"] = {
   -- easymotion
   {"EasyMotionTarget", fg = purple},
   -- hop.nvim
-  {"HopNextKey", fg = purple, style = combine(bold, underline)}
+  {"HopNextKey", fg = purple, style = combine(bold, underline)},
+  -- nvim-tree.lua
+  {"NvimTreeGitDirty", fg=darkorange},
 }
 
 hybird["li"] = {
@@ -227,7 +231,7 @@ hybird["li"] = {
   -- flutter-tools.nvim
   {"FlutterToolsOutlinemiddle", "FlutterToolsOutlinevertical"},
   {"FlutterToolsOutlinemiddlehorizontal", "FlutterToolsOutlinevertical"},
-  {"FlutterToolsOutlinebottom", "FlutterToolsOutlinevertical"}
+  {"FlutterToolsOutlinebottom", "FlutterToolsOutlinevertical"},
 }
 
 hybird["sign"] = {
