@@ -10,6 +10,7 @@ local bg2 = "#343F4C"
 local dark0 = "#374D51"
 local dark1 = "#1e272e"
 local dark2 = "#34495e"
+local dark3 = "#282a3"
 local white = "#d2dae2"
 local lightred = "#ff7979"
 local red = "#ee5253"
@@ -54,7 +55,7 @@ hybird["hi"] = {
   {"NonText", fg=lightblue},
   {"MatchParen", bg = bg0, fg = white, style = "underline"},
   {"CursorLine", bg = bg2},
-  {"VertSplit", bg = lightyellow, fg = bg0},
+  {"VertSplit", bg = dark0, fg = bg0},
   {"StatusLine", bg = bg0, fg = bg0},
   {"StatusLineNC", bg = bg0, fg = bg0},
   -- LineNumber
@@ -118,9 +119,9 @@ hybird["hi"] = {
   {"NvimTreeRootFolder", fg = yellow},
   {"NvimTreeSpecialFile", fg = yellow},
   -- dashboard
-  {"dashboardHeader", fg = yellow},
+  {"dashboardHeader", fg = lightblue},
   {"dashboardFooter", fg = darkorange},
-  {"dashboardCenter", fg = darkgreen},
+  {"dashboardCenter", fg = cyan},
   {"dashboardShortCut", fg = darkorange},
   -- Pmenu
   {"Pmenu", bg = bg2},
@@ -239,20 +240,20 @@ hybird["sign"] = {
   -- {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
   -- {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
   -- {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
-  {"LspDiagnosticsSignError", text = " |", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignWarning", text = " |", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
-  {"LspDiagnosticsSignHint", text = " |", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+  {"LspDiagnosticsSignError", text = "▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+  {"LspDiagnosticsSignWarning", text = "▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+  {"LspDiagnosticsSignHint", text = "▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
   {
     "LspDiagnosticsSignInformation",
     text = " |",
     hl = "LspDiagnosticsSignInformation",
     nhl = "LspDiagnosticsSignInformation"
   },
-  {"GitSignsAdd", text = "▊", hl = "GitAdd"},
-  {"GitSignsChange", text = "▊", hl = "GitChange"},
-  {"GitSignsDelete", text = "▊", hl = "GitDelete"},
-  {"GitSignsTopDelete", text = "▊", hl = "GitDelete"},
-  {"GitSignsChangeDelete", text = "▊", hl = "GitDelete"}
+  {"GitSignsAdd", text = "|", hl = "GitAdd"},
+  {"GitSignsChange", text = "|", hl = "GitChange"},
+  {"GitSignsDelete", text = "|", hl = "GitDelete"},
+  {"GitSignsTopDelete", text = "|", hl = "GitDelete"},
+  {"GitSignsChangeDelete", text = "|", hl = "GitDelete"}
 }
 
 function hybird:load_hi_group()
@@ -315,11 +316,11 @@ function hybird.config()
     vim.cmd("syntax reset")
   end
   vim.g.colors_name = "nvim-hybrid"
-  vim.g.gitgutter_sign_added = "▊"
-  vim.g.gitgutter_sign_modified = "▊"
-  vim.g.gitgutter_sign_removed = "▊"
-  vim.g.gitgutter_sign_removed_first_line = "▊"
-  vim.g.gitgutter_sign_removed_above_and_below = "▊"
+  vim.g.gitgutter_sign_added = "|"
+  vim.g.gitgutter_sign_modified = "|"
+  vim.g.gitgutter_sign_removed = "|"
+  vim.g.gitgutter_sign_removed_first_line = "|"
+  vim.g.gitgutter_sign_removed_above_and_below = "|"
   async:send()
 end
 
