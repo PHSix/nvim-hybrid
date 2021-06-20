@@ -48,6 +48,7 @@ end
 hybird["hi"] = {
   -- default
   {"Normal", bg = bg0, fg = white},
+  {"NormalFloat", bg = bg0, fg = white},
   -- Cursor
   {"Cursor", bg = white, fg = darkblue},
   {"lCursor", bg = white, fg = darkblue},
@@ -166,6 +167,9 @@ hybird["hi"] = {
   {"HopNextKey", fg = purple, style = combine(bold, underline)},
   -- nvim-tree.lua
   {"NvimTreeGitDirty", fg=darkorange},
+  -- indent-blanking.nvim
+  {"IndentBlanklineChar", fg=bg2},
+  {"IndentBlanklineContextChar", fg=purple}
 }
 
 hybird["li"] = {
