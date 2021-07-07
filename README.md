@@ -1,12 +1,12 @@
 # Information
-A neovim colorscheme write in lua.
+A neovim colorscheme write in pure lua.
 # Requirement
 neovim(version >= 0.5)
 # Screenfetch
 ![image](https://user-images.githubusercontent.com/57695072/124710554-84d5e780-df2f-11eb-9292-bbd5bd3ddafa.png)
 ![image](https://user-images.githubusercontent.com/57695072/124710680-af27a500-df2f-11eb-8c3c-c16fc74bb42b.png)
 ![image](https://user-images.githubusercontent.com/57695072/124710726-ba7ad080-df2f-11eb-88e1-c89f546c8d4e.png)
-# Used
+# Usage
 Use [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) to install.
 ```lua
 use{
@@ -16,7 +16,7 @@ use{
   end
 }
 ```
-# Support plugin
+# Support plugins
 - [coc-git](https://github.com/neoclide/coc-git)
 - [airblade/vim-gitgutter](https://github.comairblade/vim-gitgutter)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
@@ -27,21 +27,21 @@ use{
 If you use `coc.nvim` for your completion plugin and you want have similar with screenfetch(I use `nvim-lspconfig`), you need setting your `coc-setting.json`.
 
 ```json
-  "git.addedSign.text": "▊",
-  "git.removedSign.text": "▊",
-  "git.changeRemovedSign.text": "▊",
-  "git.topRemovedSign.text": "▊",
-  "git.changedSign.text": "▊",
+  "git.addedSign.text": "|",
+  "git.removedSign.text": "|",
+  "git.changeRemovedSign.text": "|",
+  "git.topRemovedSign.text": "|",
+  "git.changedSign.text": "|",
   "git.addedSign.hlGroup": "DiffAdd",
   "git.changedSign.hlGroup": "DiffChange",
   "git.removedSign.hlGroup": "DiffDelete",
   "git.topRemovedSign.hlGroup": "DiffDelete",
   "git.changeRemovedSign.hlGroup": "DiffChange",
   "diagnostic.enableSign": true,
-  "diagnostic.errorSign": " ▊",
-  "diagnostic.hintSign": " ▊",
-  "diagnostic.infoSign": " ▊",
-  "diagnostic.warningSign": " ▊",
+  "diagnostic.errorSign": "▊",
+  "diagnostic.hintSign": "▊",
+  "diagnostic.infoSign": "▊",
+  "diagnostic.warningSign": "▊",
 
 ```
 
@@ -50,4 +50,4 @@ If you use `coc.nvim` for your completion plugin and you want have similar with 
 
 # Todo
 - [x] [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)(maybe I will give up)
-- [ ] [nvim-treesitter](https://github.com/akinsho/nvim-treesitter/nvim-treesitter)
+- [x] [nvim-treesitter](https://github.com/akinsho/nvim-treesitter/nvim-treesitter)
