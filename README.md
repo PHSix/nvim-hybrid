@@ -3,9 +3,9 @@ A neovim colorscheme write in lua.
 # Requirement
 neovim(version >= 0.5)
 # Screenfetch
-![screenfetch](screenfetch/screenfetch1.png)
-![screenfetch](screenfetch/screenfetch2.png)
-![screenfetch](screenfetch/screenfetch3.png)
+![image](https://user-images.githubusercontent.com/57695072/124710554-84d5e780-df2f-11eb-9292-bbd5bd3ddafa.png)
+![image](https://user-images.githubusercontent.com/57695072/124710680-af27a500-df2f-11eb-8c3c-c16fc74bb42b.png)
+![image](https://user-images.githubusercontent.com/57695072/124710726-ba7ad080-df2f-11eb-88e1-c89f546c8d4e.png)
 # Used
 Use [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) to install.
 ```lua
