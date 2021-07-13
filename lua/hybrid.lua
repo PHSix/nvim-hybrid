@@ -130,7 +130,7 @@ hybird["hi"] = {
   {"PmenuSBar", bg = bg2, fg = bg2},
   {"PmenuThumb", bg = darkgray},
   -- Search
-  {"Search", fg = purple, bg = darkgreen},
+  {"Search", fg = purple, bg = pink},
   {"MatchParen", fg = white, bg = darkgreen},
   -- Visual
   {"Visual", style = "inverse"},
