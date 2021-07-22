@@ -53,7 +53,7 @@ hybird["hi"] = {
   {"Cursor", bg = white, fg = darkblue},
   {"lCursor", bg = white, fg = darkblue},
   -- detail
-  {"NonText", fg=lightblue},
+  {"NonText", fg = lightblue},
   {"MatchParen", bg = bg0, fg = white, style = "underline"},
   {"CursorLine", bg = bg2},
   {"VertSplit", bg = dark0, fg = bg0},
@@ -130,8 +130,8 @@ hybird["hi"] = {
   {"PmenuSBar", bg = bg2, fg = bg2},
   {"PmenuThumb", bg = darkgray},
   -- Search
-  {"Search", fg = purple, bg = pink},
-  {"MatchParen", fg = white, bg = darkgreen},
+  {"Search", fg = purple, bg = blue},
+  {"MatchParen", fg = white, bg = blue},
   -- Visual
   {"Visual", style = "inverse"},
   {"VisualNOS", bg = darkgray},
@@ -166,10 +166,19 @@ hybird["hi"] = {
   -- hop.nvim
   {"HopNextKey", fg = purple, style = combine(bold, underline)},
   -- nvim-tree.lua
-  {"NvimTreeGitDirty", fg=darkorange},
+  {"NvimTreeGitDirty", fg = darkorange},
   -- indent-blanking.nvim
-  {"IndentBlanklineChar", fg=bg2},
-  {"IndentBlanklineContextChar", fg=purple}
+  {"IndentBlanklineChar", fg = bg2},
+  {"IndentBlanklineContextChar", fg = purple},
+  -- todo-comments.nvim
+  {"TodoSignWARN", bg = none},
+  {"TodoSignPERF", bg = none},
+  {"TodoSignHACK", bg = none},
+  {"TodoSignTODO", bg = none},
+  {"TodoSignNOTE", bg = none},
+  {"TodoSignFIX", bg = none},
+  -- vim-cursorword
+  {"CursorWord1", bg = none, fg = none}
 }
 
 hybird["li"] = {
@@ -236,7 +245,7 @@ hybird["li"] = {
   -- flutter-tools.nvim
   {"FlutterToolsOutlinemiddle", "FlutterToolsOutlinevertical"},
   {"FlutterToolsOutlinemiddlehorizontal", "FlutterToolsOutlinevertical"},
-  {"FlutterToolsOutlinebottom", "FlutterToolsOutlinevertical"},
+  {"FlutterToolsOutlinebottom", "FlutterToolsOutlinevertical"}
 }
 
 hybird["sign"] = {
