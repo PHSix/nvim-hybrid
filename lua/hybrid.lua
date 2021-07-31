@@ -253,12 +253,12 @@ hybird["sign"] = {
   -- {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
   -- {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
   -- {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
-  {"LspDiagnosticsSignError", text = "▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignWarning", text = "▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
-  {"LspDiagnosticsSignHint", text = "▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+  {"LspDiagnosticsSignError", text = "", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+  {"LspDiagnosticsSignWarning", text = "", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+  {"LspDiagnosticsSignHint", text = "", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
   {
     "LspDiagnosticsSignInformation",
-    text = " |",
+    text = "",
     hl = "LspDiagnosticsSignInformation",
     nhl = "LspDiagnosticsSignInformation"
   },
@@ -307,19 +307,16 @@ function hybird:load_sign_group()
     fn["sign_define"](v[1], t)
   end
 end
-local async
+-- local async
 
-async =
-  vim.loop.new_async(
-  vim.schedule_wrap(
-    function()
-      hybird:load_hi_group()
-      hybird:load_li_group()
-      hybird:load_sign_group()
-      async:close()
-    end
-  )
-)
+-- async =
+--   vim.loop.new_async(
+--   vim.schedule_wrap(
+--     function()
+--       async:close()
+--     end
+--   )
+-- )
 
 function hybird.config()
   vim.cmd("highlight clear")
@@ -334,7 +331,10 @@ function hybird.config()
   vim.g.gitgutter_sign_removed = "|"
   vim.g.gitgutter_sign_removed_first_line = "|"
   vim.g.gitgutter_sign_removed_above_and_below = "|"
-  async:send()
+  hybird:load_hi_group()
+  hybird:load_li_group()
+  hybird:load_sign_group()
+  -- async:send()
 end
 
 hybird.config()
