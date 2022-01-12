@@ -33,6 +33,13 @@ local darkyellow = "#ffb142"
 local darkgray = "#84817a"
 local gray = "#747d8c"
 local pink = "#f78fb3"
+local sign = {
+  error = "",
+  warn = "",
+  hint = "",
+  info = "",
+}
+
 local combine = function(...)
   local M = {...}
   local style = ""
@@ -203,7 +210,7 @@ hybird["li"] = {
   {"BufferInactiveTarget", "BufferInactive"},
   {"BufferTabpageFill", "Normal"},
   {"BufferTabpages", "Normal"},
-  -- lspconfig
+  -- lspconfig(version: 0.5.x )
   {"LspDiagnosticsSignError", "ErrorSign"},
   {"LspDiagnosticsVirtualTextInformationError", "ErrorVirtualText"},
   {"LspDiagnosticsFloatingError", "ErrorFloating"},
@@ -220,6 +227,23 @@ hybird["li"] = {
   {"LspDiagnosticsVirtualTextInformationInformation", "InformationVirtualText"},
   {"LspDiagnosticsFloatingInformation", "InformationFloating"},
   {"LspDiagnosticsUnderlineInformation", "InformationUnderline"},
+  -- lspconfig(version: 0.6.x)
+  {"DiagnosticSignError", "ErrorSign"},
+  {"DiagnosticVirtualTextError", "ErrorVirtualText"},
+  {"DiagnosticFloatingError", "ErrorFloating"},
+  {"DiagnosticUnderlineError", "ErrorUnderline"},
+  {"DiagnosticWarn", "WarningSign"},
+  {"DiagnosticVirtualTextWarn", "WarningVirtualText"},
+  {"DiagnosticFloatingWarn", "WarningFloating"},
+  {"DiagnosticUnderlineWarn", "WarningUnderline"},
+  {"DiagnosticHint", "HintSign"},
+  {"DiagnosticVirtualTextHint", "HintVirtualText"},
+  {"DiagnosticFloatingHint", "HintFloating"},
+  {"DiagnosticUnderlineHint", "HintUnderline"},
+  {"DiagnosticSignInfo", "InformationSign"},
+  {"DiagnosticVirtualTextInfo", "InformationVirtualText"},
+  {"DiagnosticFloatingInfo", "InformationFloating"},
+  {"DiagnosticUnderlineInfo", "InformationUnderline"},
   -- gitgutter
   {"GitGutterAdd", "GitAdd"},
   {"GitGutterChange", "GitChange"},
@@ -248,26 +272,40 @@ hybird["li"] = {
   {"FlutterToolsOutlinebottom", "FlutterToolsOutlinevertical"}
 }
 
-hybird["sign"] = {
-  -- {"LspDiagnosticsSignError",       text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  -- {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
-  -- {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
-  -- {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
-  {"LspDiagnosticsSignError", text = "", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-  {"LspDiagnosticsSignWarning", text = "", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
-  {"LspDiagnosticsSignHint", text = "", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
-  {
-    "LspDiagnosticsSignInformation",
-    text = "",
-    hl = "LspDiagnosticsSignInformation",
-    nhl = "LspDiagnosticsSignInformation"
-  },
-  {"GitSignsAdd", text = "|", hl = "GitAdd"},
-  {"GitSignsChange", text = "|", hl = "GitChange"},
-  {"GitSignsDelete", text = "|", hl = "GitDelete"},
-  {"GitSignsTopDelete", text = "|", hl = "GitDelete"},
-  {"GitSignsChangeDelete", text = "|", hl = "GitDelete"}
-}
+if vim.fn.has("nvim-0.6") == 1 then
+  hybird["sign"] = {
+    {"DiagnosticSignError", text = sign["error"], hl = "DiagnosticError", nhl = "DiagnosticError"},
+    {"DiagnosticSignWarn", text =  sign["warn"], hl = "DiagnosticWarning", nhl = "DiagnosticWarning"},
+    {"DiagnosticSignHint", text =  sign["hint"], hl = "DiagnosticHint", nhl = "DiagnosticHint"},
+    {
+      "DiagnosticSignInfo",
+      text = sign["info"],
+      hl = "DiagnosticInfo",
+      nhl = "DiagnosticInfo"
+    },
+  }
+else
+  hybird["sign"] = {
+    -- {"LspDiagnosticsSignError",       text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+    -- {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+    -- {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+    -- {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
+    {"LspDiagnosticsSignError", text = sign["error"], hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
+    {"LspDiagnosticsSignWarning", text = sign["warn"], hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+    {"LspDiagnosticsSignHint", text = sign["hint"], hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
+    {
+      "LspDiagnosticsSignInformation",
+      text = sign["info"],
+      hl = "LspDiagnosticsSignInformation",
+      nhl = "LspDiagnosticsSignInformation"
+    }
+  }
+end
+
+table.insert(hybird["sign"], {"GitSignsAdd", text = "|", hl = "GitAdd"})
+table.insert(hybird["sign"], {"GitSignsDelete", text = "|", hl = "GitDelete"})
+table.insert(hybird["sign"], {"GitSignsTopDelete", text = "|", hl = "GitDelete"})
+table.insert(hybird["sign"], {"GitSignsChangeDelete", text = "|", hl = "GitDelete"})
 
 function hybird:load_hi_group()
   for _, v in ipairs(self["hi"]) do
@@ -307,16 +345,6 @@ function hybird:load_sign_group()
     fn["sign_define"](v[1], t)
   end
 end
--- local async
-
--- async =
---   vim.loop.new_async(
---   vim.schedule_wrap(
---     function()
---       async:close()
---     end
---   )
--- )
 
 function hybird.config()
   vim.cmd("highlight clear")
@@ -334,7 +362,6 @@ function hybird.config()
   hybird:load_hi_group()
   hybird:load_li_group()
   hybird:load_sign_group()
-  -- async:send()
 end
 
 hybird.config()

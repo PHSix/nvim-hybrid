@@ -13,6 +13,8 @@ use{
   'PHSix/nvim-hybrid',
   config = function()
     require('hybrid')
+    -- or use
+    -- vim.cmd [[colorscheme nvim-hybrid]]
   end
 }
 ```
@@ -49,5 +51,5 @@ If you use `coc.nvim` for your completion plugin and you want have similar with 
 [glepnir/zephyr-nvim](https://github.com/glepnir/zephyr-nvim) (used async)
 
 # Todo
-- [x] [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)(maybe I will give up)
+- [x] [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
 - [x] [nvim-treesitter](https://github.com/akinsho/nvim-treesitter/nvim-treesitter)
