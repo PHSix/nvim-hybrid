@@ -1,5 +1,5 @@
 local fn = vim.fn
-local hybird = {}
+local hybrid = {}
 local none = "NONE"
 local bold = "bold"
 local italic = "italic"
@@ -37,7 +37,7 @@ local sign = {
   error = "",
   warn = "",
   hint = "",
-  info = "",
+  info = ""
 }
 
 local combine = function(...)
@@ -52,7 +52,7 @@ local combine = function(...)
   return style
 end
 
-hybird["hi"] = {
+hybrid["hi"] = {
   -- default
   {"Normal", bg = bg0, fg = white},
   {"NormalFloat", bg = bg0, fg = white},
@@ -188,7 +188,7 @@ hybird["hi"] = {
   {"CursorWord1", bg = none, fg = none}
 }
 
-hybird["li"] = {
+hybrid["li"] = {
   -- Diff
   {"DiffAdd", "GitAdd"},
   {"DiffChange", "GitChange"},
@@ -273,25 +273,30 @@ hybird["li"] = {
 }
 
 if vim.fn.has("nvim-0.6") == 1 then
-  hybird["sign"] = {
+  hybrid["sign"] = {
     {"DiagnosticSignError", text = sign["error"], hl = "DiagnosticError", nhl = "DiagnosticError"},
-    {"DiagnosticSignWarn", text =  sign["warn"], hl = "DiagnosticWarning", nhl = "DiagnosticWarning"},
-    {"DiagnosticSignHint", text =  sign["hint"], hl = "DiagnosticHint", nhl = "DiagnosticHint"},
+    {"DiagnosticSignWarn", text = sign["warn"], hl = "DiagnosticWarning", nhl = "DiagnosticWarning"},
+    {"DiagnosticSignHint", text = sign["hint"], hl = "DiagnosticHint", nhl = "DiagnosticHint"},
     {
       "DiagnosticSignInfo",
       text = sign["info"],
       hl = "DiagnosticInfo",
       nhl = "DiagnosticInfo"
-    },
+    }
   }
 else
-  hybird["sign"] = {
+  hybrid["sign"] = {
     -- {"LspDiagnosticsSignError",       text = " ▊", hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
     -- {"LspDiagnosticsSignWarning",     text = " ▊", hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
     -- {"LspDiagnosticsSignHint",        text = " ▊", hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
     -- {"LspDiagnosticsSignInformation", text = " ▊", hl = "LspDiagnosticsSignInformation", nhl = "LspDiagnosticsSignInformation"},
     {"LspDiagnosticsSignError", text = sign["error"], hl = "LspDiagnosticsSignError", nhl = "LspDiagnosticsSignError"},
-    {"LspDiagnosticsSignWarning", text = sign["warn"], hl = "LspDiagnosticsSignWarning", nhl = "LspDiagnosticsSignWarning"},
+    {
+      "LspDiagnosticsSignWarning",
+      text = sign["warn"],
+      hl = "LspDiagnosticsSignWarning",
+      nhl = "LspDiagnosticsSignWarning"
+    },
     {"LspDiagnosticsSignHint", text = sign["hint"], hl = "LspDiagnosticsSignHint", nhl = "LspDiagnosticsSignHint"},
     {
       "LspDiagnosticsSignInformation",
@@ -302,12 +307,12 @@ else
   }
 end
 
-table.insert(hybird["sign"], {"GitSignsAdd", text = "|", hl = "GitAdd"})
-table.insert(hybird["sign"], {"GitSignsDelete", text = "|", hl = "GitDelete"})
-table.insert(hybird["sign"], {"GitSignsTopDelete", text = "|", hl = "GitDelete"})
-table.insert(hybird["sign"], {"GitSignsChangeDelete", text = "|", hl = "GitDelete"})
+table.insert(hybrid["sign"], {"GitSignsAdd", text = "|", hl = "GitAdd"})
+table.insert(hybrid["sign"], {"GitSignsDelete", text = "|", hl = "GitDelete"})
+table.insert(hybrid["sign"], {"GitSignsTopDelete", text = "|", hl = "GitDelete"})
+table.insert(hybrid["sign"], {"GitSignsChangeDelete", text = "|", hl = "GitDelete"})
 
-function hybird:load_hi_group()
+function hybrid:load_hi_group()
   for _, v in ipairs(self["hi"]) do
     local command = "hi! " .. v[1] .. " "
     if v["bg"] ~= nil then
@@ -323,14 +328,14 @@ function hybird:load_hi_group()
   end
 end
 
-function hybird:load_li_group()
+function hybrid:load_li_group()
   for _, v in ipairs(self["li"]) do
     local command = "hi! link " .. v[1] .. " " .. v[2]
     vim.cmd(command)
   end
 end
 
-function hybird:load_sign_group()
+function hybrid:load_sign_group()
   for _, v in ipairs(self["sign"]) do
     local t = {}
     if v["text"] ~= nil then
@@ -346,8 +351,10 @@ function hybird:load_sign_group()
   end
 end
 
-function hybird.config()
-  vim.cmd("highlight clear")
+function hybrid.setup(opts)
+  if opts and opts.reset == true then
+    vim.cmd("highlight clear")
+  end
   vim.o.background = "dark"
   vim.o.termguicolors = true
   if fn.exists("syntax_on") then
@@ -359,11 +366,9 @@ function hybird.config()
   vim.g.gitgutter_sign_removed = "|"
   vim.g.gitgutter_sign_removed_first_line = "|"
   vim.g.gitgutter_sign_removed_above_and_below = "|"
-  hybird:load_hi_group()
-  hybird:load_li_group()
-  hybird:load_sign_group()
+  hybrid:load_hi_group()
+  hybrid:load_li_group()
+  hybrid:load_sign_group()
 end
 
-hybird.config()
-
-return hybird
+return hybrid
