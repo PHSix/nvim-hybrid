@@ -1,2 +1,2 @@
-lua require('hybrid')
+lua require('hybrid').setup()
 
